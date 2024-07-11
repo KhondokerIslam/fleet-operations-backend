@@ -66,7 +66,7 @@ public class VehicleService {
         }
         else{
 
-            vehicle.setId( 10001L );
+            vehicle.setId( 10001L ); //After importing large data
         }
         try {
 
@@ -92,12 +92,12 @@ public class VehicleService {
         try {
             vehicleRepository.delete(vehicleOptional.get());
 
-            return new ResponseEntity<>("Vehicle added", HttpStatus.OK);
+            return new ResponseEntity<>("Vehicle deleted", HttpStatus.OK);
         }
         catch (Exception e) {
 
             e.printStackTrace();
-            return new ResponseEntity<>("Vehicle Adding failed", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("Vehicle deletion failed", HttpStatus.BAD_REQUEST);
         }
 
     }
