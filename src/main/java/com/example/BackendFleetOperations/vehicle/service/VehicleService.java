@@ -44,7 +44,7 @@ public class VehicleService {
 
         return VehicleResponse.builder()
                 .id( vehicle.getId() )
-                .chassisNo( vehicle.getChassisNo() )
+                .modelName( vehicle.getModelName() )
                 .regNo( vehicle.getRegNo() )
                 .build();
     }
@@ -70,7 +70,7 @@ public class VehicleService {
         }
         try {
 
-            vehicle.setChassisNo(vehicleRequestData.getChassisNo());
+            vehicle.setModelName(vehicleRequestData.getModelName());
             vehicle.setRegNo(vehicleRequestData.getRegNo());
             vehicle.setCreatedDate( LocalDate.now() );
 
