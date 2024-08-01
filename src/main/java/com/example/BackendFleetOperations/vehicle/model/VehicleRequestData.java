@@ -7,5 +7,5 @@ public class VehicleRequestData {
 
     private Long id;
     private String regNo;
-    private String chassisNo;
+    private String modelName;
 }

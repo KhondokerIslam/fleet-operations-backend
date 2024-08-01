@@ -9,5 +9,5 @@ public class VehicleResponse {
 
     private Long id;
     private String regNo;
-    private String chassisNo;
+    private String modelName;
 }
