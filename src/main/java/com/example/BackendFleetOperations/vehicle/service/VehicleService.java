@@ -90,7 +90,7 @@ public class VehicleService {
             vehicle.setYearlyTravelRange( vehicleRequestData.getYearlyTravelRange() );
             vehicle.setFuelType( vehicleRequestData.getFuelType() );
             vehicle.setFuelConsumptionPerKm( vehicleRequestData.getFuelConsumptionPerKm() );
-            vehicle.setVehicleType( vehicleRequestData.getVehicleType() );
+            //vehicle.setVehicleType( vehicleRequestData.getVehicleType() );
 
             save(vehicle);
 
