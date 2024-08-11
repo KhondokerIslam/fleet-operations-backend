@@ -1,5 +1,6 @@
 package com.example.BackendFleetOperations.vehicle.service;
 
+import com.example.BackendFleetOperations.utils.Utils;
 import com.example.BackendFleetOperations.vehicle.model.Vehicle;
 import com.example.BackendFleetOperations.vehicle.model.VehicleRequestData;
 import com.example.BackendFleetOperations.vehicle.model.VehicleResponse;
@@ -46,6 +47,19 @@ public class VehicleService {
                 .id( vehicle.getId() )
                 .modelName( vehicle.getModelName() )
                 .regNo( vehicle.getRegNo() )
+                .vehicleSize( vehicle.getVehicleSize() )
+                .purchaseYear( vehicle.getPurchaseYear() )
+                .purchaseCost( vehicle.getPurchaseCost() )
+                .dailyMaxTravelDistance( vehicle.getDailyMaxTravelDistance() )
+                .yearlyTravelRange( vehicle.getYearlyTravelRange() )
+                .fuelType( vehicle.getFuelType() )
+                .fuelConsumptionPerKm( vehicle.getFuelConsumptionPerKm() )
+                .availableFrom( vehicle.getAvailableFrom() )
+                .vehicleType( vehicle.getVehicleType() )
+                .isBooked(() -> {
+                    LocalDate availableFromDate = Utils.makeDateStandard(vehicle.getAvailableFrom());
+                    return availableFromDate.isBefore(LocalDate.now());
+                })
                 .build();
     }
 
@@ -64,15 +78,19 @@ public class VehicleService {
 
             vehicle = findById(vehicleRequestData.getId()).get();
         }
-        else{
-
-            vehicle.setId( 10001L ); //After importing large data
-        }
         try {
 
             vehicle.setModelName(vehicleRequestData.getModelName());
             vehicle.setRegNo(vehicleRequestData.getRegNo());
             vehicle.setCreatedDate( LocalDate.now() );
+            vehicle.setVehicleSize( vehicleRequestData.getVehicleSize() );
+            vehicle.setPurchaseYear( vehicleRequestData.getPurchaseYear() );
+            vehicle.setPurchaseCost( vehicleRequestData.getPurchaseCost() );
+            vehicle.setDailyMaxTravelDistance( vehicleRequestData.getDailyMaxTravelDistance() );
+            vehicle.setYearlyTravelRange( vehicleRequestData.getYearlyTravelRange() );
+            vehicle.setFuelType( vehicleRequestData.getFuelType() );
+            vehicle.setFuelConsumptionPerKm( vehicleRequestData.getFuelConsumptionPerKm() );
+            //vehicle.setVehicleType( vehicleRequestData.getVehicleType() );
 
             save(vehicle);
 
