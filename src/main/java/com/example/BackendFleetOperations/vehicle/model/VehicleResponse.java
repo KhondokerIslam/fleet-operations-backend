@@ -2,13 +2,11 @@ package com.example.BackendFleetOperations.vehicle.model;
 
 import com.example.BackendFleetOperations.enums.FuelType;
 import com.example.BackendFleetOperations.enums.VehicleType;
-import lombok.Builder;
+import com.example.BackendFleetOperations.utils.Utils;
 import lombok.Data;
 
 import java.time.LocalDate;
-import java.util.function.Supplier;
 
-@Builder
 @Data
 public class VehicleResponse {
 
@@ -20,9 +18,27 @@ public class VehicleResponse {
     private Long purchaseCost;
     private Long dailyMaxTravelDistance; //In km
     private Long yearlyTravelRange; //In km
-    private FuelType fuelType;
+    private Integer fuelType;
     private Double fuelConsumptionPerKm;
     private LocalDate availableFrom;
-    private VehicleType vehicleType;
-    private Supplier<Boolean> isBooked;
+    private Integer vehicleType;
+    private Boolean isBooked;
+
+    public void setFuelType(FuelType fuelType) {
+
+        this.fuelType = FuelType.getValueByName( fuelType );
+    }
+
+    public void setVehicleType(VehicleType vehicleType) {
+
+        this.vehicleType = VehicleType.getValueByName( vehicleType );
+
+    }
+
+     public void setIsBooked(LocalDate availableFromDate) {
+
+        availableFrom = Utils.makeDateStandard(availableFromDate);
+
+         this.isBooked = availableFromDate.isBefore(LocalDate.now());
+     }
 }
