@@ -28,4 +28,17 @@ public enum VehicleType {
             vehicleTypeMap.put( vehicleType.value, vehicleType.label );
         }
     }
+
+    public static Integer getValueByName(VehicleType vehicleType) {
+
+        for ( VehicleType type : VehicleType.values() ){
+
+            if (type.equals(vehicleType)){
+
+                return type.value;
+            }
+        }
+
+        return null;
+    }
 }

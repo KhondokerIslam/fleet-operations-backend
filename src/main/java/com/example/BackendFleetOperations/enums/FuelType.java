@@ -30,9 +30,22 @@ public enum FuelType {
         this.label = label;
     }
 
-    public String getLabel(Integer value) {
+    public static String getLabel(Integer value) {
 
         return fuelTypeMap.get(value);
+    }
+
+    public static Integer getValueByName( FuelType fuelType ){ //ordinary ``return fuelType.value`` is not possible bcz at the moment fuelType does not has a value
+
+        for ( FuelType type : FuelType.values() ){
+
+            if (type.equals(fuelType)){
+
+                return type.value;
+            }
+        }
+
+        return null;
     }
 
 }

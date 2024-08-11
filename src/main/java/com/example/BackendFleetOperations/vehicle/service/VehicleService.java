@@ -1,6 +1,5 @@
 package com.example.BackendFleetOperations.vehicle.service;
 
-import com.example.BackendFleetOperations.utils.Utils;
 import com.example.BackendFleetOperations.vehicle.model.Vehicle;
 import com.example.BackendFleetOperations.vehicle.model.VehicleRequestData;
 import com.example.BackendFleetOperations.vehicle.model.VehicleResponse;
@@ -43,24 +42,23 @@ public class VehicleService {
 
     private static VehicleResponse getVehicleResponse(Vehicle vehicle) {
 
-        return VehicleResponse.builder()
-                .id( vehicle.getId() )
-                .modelName( vehicle.getModelName() )
-                .regNo( vehicle.getRegNo() )
-                .vehicleSize( vehicle.getVehicleSize() )
-                .purchaseYear( vehicle.getPurchaseYear() )
-                .purchaseCost( vehicle.getPurchaseCost() )
-                .dailyMaxTravelDistance( vehicle.getDailyMaxTravelDistance() )
-                .yearlyTravelRange( vehicle.getYearlyTravelRange() )
-                .fuelType( vehicle.getFuelType() )
-                .fuelConsumptionPerKm( vehicle.getFuelConsumptionPerKm() )
-                .availableFrom( vehicle.getAvailableFrom() )
-                .vehicleType( vehicle.getVehicleType() )
-                .isBooked(() -> {
-                    LocalDate availableFromDate = Utils.makeDateStandard(vehicle.getAvailableFrom());
-                    return availableFromDate.isBefore(LocalDate.now());
-                })
-                .build();
+        VehicleResponse vehicleResponse = new VehicleResponse();
+
+        vehicleResponse.setId( vehicle.getId() );
+        vehicleResponse.setModelName( vehicle.getModelName() );
+        vehicleResponse.setRegNo( vehicle.getRegNo() );
+        vehicleResponse.setVehicleSize( vehicle.getVehicleSize() );
+        vehicleResponse.setPurchaseYear( vehicle.getPurchaseYear() );
+        vehicleResponse.setPurchaseCost( vehicle.getPurchaseCost() );
+        vehicleResponse.setDailyMaxTravelDistance( vehicle.getDailyMaxTravelDistance() );
+        vehicleResponse.setYearlyTravelRange( vehicle.getYearlyTravelRange() );
+        vehicleResponse.setFuelType( vehicle.getFuelType() );
+        vehicleResponse.setFuelConsumptionPerKm( vehicle.getFuelConsumptionPerKm() );
+        vehicleResponse.setAvailableFrom( vehicle.getAvailableFrom() );
+        vehicleResponse.setVehicleType( vehicle.getVehicleType() );
+        vehicleResponse.setIsBooked( vehicle.getAvailableFrom() );
+
+        return vehicleResponse;
     }
 
     public List<VehicleResponse> getVehicleListFromVehicleResponses() {
