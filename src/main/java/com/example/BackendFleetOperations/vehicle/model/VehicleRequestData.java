@@ -18,4 +18,5 @@ public class VehicleRequestData {
     private FuelType fuelType;
     private Double fuelConsumptionPerKm;
     private VehicleType vehicleType;
+    private String userName;
 }

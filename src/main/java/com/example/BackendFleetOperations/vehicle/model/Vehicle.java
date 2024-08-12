@@ -2,8 +2,11 @@ package com.example.BackendFleetOperations.vehicle.model;
 
 import com.example.BackendFleetOperations.enums.FuelType;
 import com.example.BackendFleetOperations.enums.VehicleType;
+import com.example.BackendFleetOperations.user.model.User;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 import java.time.LocalDate;
 
@@ -52,4 +55,10 @@ public class Vehicle {
 
     @Column( name = "vehicle_type" )
     private VehicleType vehicleType;
+
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    @OneToOne( fetch = FetchType.LAZY, cascade = CascadeType.ALL )
+    @JoinColumn( name = "vehicle_owner_user_id", foreignKey = @ForeignKey( name = "fk_user_id" ))
+    private User user;
 }
