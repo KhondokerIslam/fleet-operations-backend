@@ -1,5 +1,7 @@
 package com.example.BackendFleetOperations.vehicle.service;
 
+import com.example.BackendFleetOperations.user.model.User;
+import com.example.BackendFleetOperations.user.service.UserService;
 import com.example.BackendFleetOperations.vehicle.model.Vehicle;
 import com.example.BackendFleetOperations.vehicle.model.VehicleRequestData;
 import com.example.BackendFleetOperations.vehicle.model.VehicleResponse;
@@ -17,6 +19,9 @@ public class VehicleService {
 
     @Autowired
     private VehicleRepository vehicleRepository;
+
+    @Autowired
+    private UserService userService;
 
     public void save(Vehicle vehicle) {
 
@@ -89,6 +94,14 @@ public class VehicleService {
             vehicle.setFuelType( vehicleRequestData.getFuelType() );
             vehicle.setFuelConsumptionPerKm( vehicleRequestData.getFuelConsumptionPerKm() );
             vehicle.setVehicleType( vehicleRequestData.getVehicleType() );
+
+            Optional<User> userOptional = userService.findByUserName( vehicleRequestData.getUserName() );
+
+            if( userOptional.isPresent() ){
+
+                User user = userOptional.get();
+                vehicle.setUser( user );
+            }
 
             save(vehicle);
 
